@@ -9,26 +9,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
- 
+
 import entity.Student;
 import entity.StudentXML;
 import utils.FileUtils;
- 
+
 /**
  *
  * @author HOANGTUAN
  */
 public class StudentDao {
+
     private static final String STUDENT_FILE_NAME = "student.xml";
     private List<Student> listStudents;
- 
+
     public StudentDao() {
         this.listStudents = readListStudents();
     }
- 
+
     /**
      * Lưu các đối tượng student vào file student.xml
-     * 
+     *
      * @param students
      */
     public void writeListStudents(List<Student> students) {
@@ -36,10 +37,10 @@ public class StudentDao {
         studentXML.setStudent(students);
         FileUtils.writeXMLtoFile(STUDENT_FILE_NAME, studentXML);
     }
- 
+
     /**
      * Đọc các đối tượng student từ file student.xml
-     * 
+     *
      * @return list student
      */
     public List<Student> readListStudents() {
@@ -51,11 +52,10 @@ public class StudentDao {
         }
         return list;
     }
-     
- 
+
     /**
      * thêm student vào listStudents và lưu listStudents vào file
-     * 
+     *
      * @param student
      */
     public void add(Student student) {
@@ -64,10 +64,10 @@ public class StudentDao {
         listStudents.add(student);
         writeListStudents(listStudents);
     }
- 
+
     /**
      * cập nhật student vào listStudents và lưu listStudents vào file
-     * 
+     *
      * @param student
      */
     public void edit(Student student) {
@@ -75,18 +75,19 @@ public class StudentDao {
         for (int i = 0; i < size; i++) {
             if (listStudents.get(i).getId() == student.getId()) {
                 listStudents.get(i).setName(student.getName());
-                listStudents.get(i).setAge(student.getAge());
+                listStudents.get(i).setDob(student.getDob());
                 listStudents.get(i).setAddress(student.getAddress());
+                listStudents.get(i).setEmail(student.getEmail());
                 listStudents.get(i).setGpa(student.getGpa());
                 writeListStudents(listStudents);
                 break;
             }
         }
     }
- 
+
     /**
      * xóa student từ listStudents và lưu listStudents vào file
-     * 
+     *
      * @param student
      */
     public boolean delete(Student student) {
@@ -106,7 +107,7 @@ public class StudentDao {
         }
         return false;
     }
- 
+
     /**
      * sắp xếp danh sách student theo name theo tứ tự tăng dần
      */
@@ -117,7 +118,7 @@ public class StudentDao {
             }
         });
     }
- 
+
     /**
      * sắp xếp danh sách student theo GPA theo tứ tự tăng dần
      */
@@ -131,11 +132,11 @@ public class StudentDao {
             }
         });
     }
- 
+
     public List<Student> getListStudents() {
         return listStudents;
     }
- 
+
     public void setListStudents(List<Student> listStudents) {
         this.listStudents = listStudents;
     }

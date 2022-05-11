@@ -6,6 +6,7 @@
 package entity;
  
 import java.io.Serializable;
+import java.util.Date;
  
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -23,21 +24,31 @@ public class Student implements Serializable {
     private static final long serialVersionUID = 1L;
     private int id;
     private String name;
-    private byte age;
+    private Date dob;
     private String address;
+    private String email;
     /* điểm trung bình của sinh viên */
     private float gpa;
  
     public Student() {
     }
  
-    public Student(int id, String name, byte age, String address, float gpa) {
+    public Student(int id, String name, Date dob, String address,String email, float gpa) {
         super();
         this.id = id;
         this.name = name;
-        this.age = age;
+        this.dob = dob;
         this.address = address;
+        this.email=email;
         this.gpa = gpa;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
  
     public int getId() {
@@ -56,12 +67,12 @@ public class Student implements Serializable {
         this.name = name;
     }
  
-    public byte getAge() {
-        return age;
+    public Date getDob() {
+        return dob;
     }
  
-    public void setAge(byte age) {
-        this.age = age;
+    public void setDob(Date age) {
+        this.dob = age;
     }
  
     public String getAddress() {
